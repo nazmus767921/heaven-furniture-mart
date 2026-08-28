@@ -1,79 +1,122 @@
-import React from 'react'
+import React, { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'motion/react'
 import { Sparkles, Layers, Award, Compass, ArrowRight } from 'lucide-react'
 import { siteConfig } from '../../config/site'
 import { Button } from '../ui/Button'
+import { fadeInUp, staggerContainer, LUXURY_EASE } from '../../lib/motion'
 
 interface BrandIntroSectionProps {
   onOpenQuote: () => void
 }
 
 export const BrandIntroSection: React.FC<BrandIntroSectionProps> = ({ onOpenQuote }) => {
+  const sectionRef = useRef<HTMLElement>(null)
+
+  // Subtle image parallax inside the left column container
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  })
+
+  const imageY = useTransform(scrollYProgress, [0, 1], ['-6%', '6%'])
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1.08, 1.02])
+
   return (
     <section
+      ref={sectionRef}
       id="about"
       aria-label="Brand Philosophy"
-      className="py-20 md:py-28 bg-charcoal-teal text-ivory relative overflow-hidden"
+      className="bg-charcoal-teal text-ivory relative overflow-hidden border-t border-charcoal-border"
     >
       {/* Decorative ambient lighting */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-brass/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-charcoal-deep/80 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Authentic Brand Visual Banner */}
-          <div className="lg:col-span-5 space-y-4">
-            <div className="relative overflow-hidden border border-charcoal-border shadow-2xl bg-charcoal-deep group">
+      <div className="w-full relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch min-h-full">
+          {/* Left Column: Full-Bleed Authentic Brand Visual Banner with Smooth Parallax Depth */}
+          <div className="lg:col-span-5 relative overflow-hidden bg-charcoal-deep group min-h-[400px] sm:min-h-[480px] lg:min-h-[720px] flex flex-col justify-end">
+            <motion.div
+              style={{ y: imageY, scale: imageScale }}
+              className="absolute inset-0 w-full h-[112%] -top-[6%] will-change-transform"
+            >
               <img
-                src="/images/luxury-living-room-2.jpg"
+                src="/images/luxury-living-room-2.webp"
                 alt="Heaven Furniture Mart Vitrine Showcase crafted for luxury living"
+                width={1024}
+                height={1024}
                 loading="lazy"
                 decoding="async"
-                className="w-full aspect-4/5 object-cover group-hover:scale-103 transition-transform duration-700"
+                className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-charcoal-deep/90 via-charcoal-deep/30 to-transparent" />
+            </motion.div>
 
-              <div className="absolute bottom-6 left-6 right-6">
+            {/* Multi-layered cinematic gradient overlays */}
+            <div className="absolute inset-0 bg-gradient-to-t from-charcoal-deep/95 via-charcoal-deep/40 to-transparent pointer-events-none" />
+            <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-charcoal-teal/60 pointer-events-none" />
+
+            {/* In-Image Caption & Atelier Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.7, ease: LUXURY_EASE }}
+              className="relative z-10 p-6 sm:p-8 lg:p-10 space-y-3"
+            >
+              <div>
                 <span className="text-xs uppercase tracking-[0.2em] text-brass font-bold block mb-1">
                   Agrabad Flagship Collection
                 </span>
-                <p className="font-serif text-xl sm:text-2xl text-ivory">
+                <h3 className="font-serif text-xl sm:text-2xl lg:text-3xl text-ivory leading-tight">
                   Palazzo Arch Vitrine & Showcase
-                </p>
+                </h3>
                 <p className="text-sm text-ivory/80 mt-1">
                   Curved beveled float glass & solid brass accents
                 </p>
               </div>
-            </div>
 
-            {/* Sub-label */}
-            <div className="flex items-center justify-between text-sm text-ivory/75 px-1 font-medium">
-              <span>Chattogram Atelier</span>
-              <span className="text-brass">Est. 2020</span>
-            </div>
+              {/* Sub-label */}
+              <div className="flex items-center justify-between text-xs sm:text-sm text-ivory/75 pt-2 border-t border-charcoal-border/70 font-medium">
+                <span>Chattogram Atelier</span>
+                <span className="text-brass">Est. 2020</span>
+              </div>
+            </motion.div>
           </div>
 
-          {/* Right Column: Editorial Narrative & Founder Quote */}
-          <div className="lg:col-span-7 space-y-8">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-charcoal-surface border border-charcoal-border text-xs sm:text-sm uppercase tracking-[0.18em] text-brass font-semibold mb-4">
+          {/* Right Column: Editorial Narrative & Founder Quote with Staggered Scroll Viewport */}
+          <div className="lg:col-span-7 py-16 sm:py-20 lg:py-24 px-6 sm:px-10 lg:px-14 xl:px-18 2xl:px-24 flex flex-col justify-center space-y-8">
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.25 }}
+              className="max-w-3xl space-y-5"
+            >
+              <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-charcoal-surface border border-charcoal-border text-xs sm:text-sm uppercase tracking-[0.18em] text-brass font-semibold">
                 <Sparkles className="w-4 h-4" />
                 <span>Our Philosophy</span>
-              </div>
+              </motion.div>
 
-              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-ivory leading-tight mb-5">
+              <motion.h2 variants={fadeInUp} className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-ivory leading-tight">
                 Not a Mass Retailer. <br />
                 <span className="italic text-brass-light font-medium">
                   A Bespoke Interior Atelier.
                 </span>
-              </h2>
+              </motion.h2>
 
-              <p className="text-base sm:text-lg text-ivory/90 leading-relaxed font-light mb-6">
+              <motion.p variants={fadeInUp} className="text-base sm:text-lg text-ivory/90 leading-relaxed font-light">
                 We believe your home should never be defined by cookie-cutter dimensions or flat-pack catalog furniture. At Heaven Furniture Mart, every dining table, sofa ensemble, and master bedroom suite is conceived as an architectural statement—meticulously engineered around the exact contours of your living space and the cadence of your daily life.
-              </p>
-            </div>
+              </motion.p>
+            </motion.div>
 
-            {/* Founder Quote Card */}
-            <div className="p-6 sm:p-7 bg-charcoal-surface/90 border-l-2 border-brass border-y border-r border-charcoal-border shadow-lg relative">
+            {/* Founder Quote Card with subtle scroll entrance */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.75, ease: LUXURY_EASE }}
+              className="p-6 sm:p-7 bg-charcoal-surface/90 border-l-2 border-brass border-y border-r border-charcoal-border shadow-lg relative max-w-3xl"
+            >
               <blockquote className="font-serif text-lg sm:text-xl text-ivory italic leading-relaxed">
                 "{siteConfig.founder.quote}"
               </blockquote>
@@ -90,11 +133,17 @@ export const BrandIntroSection: React.FC<BrandIntroSectionProps> = ({ onOpenQuot
                   Agrabad Studio
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* 3 Core Tenets */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-              <div className="p-4 sm:p-5 bg-charcoal-deep/60 border border-charcoal-border">
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 max-w-3xl"
+            >
+              <motion.div variants={fadeInUp} className="p-4 sm:p-5 bg-charcoal-deep/60 border border-charcoal-border hover:border-brass/40 transition-colors">
                 <Compass className="w-5 h-5 text-brass mb-2.5" />
                 <h4 className="text-sm uppercase tracking-wider font-bold text-ivory mb-1.5">
                   Bespoke Sizing
@@ -102,9 +151,9 @@ export const BrandIntroSection: React.FC<BrandIntroSectionProps> = ({ onOpenQuot
                 <p className="text-xs sm:text-sm text-ivory/80 leading-relaxed">
                   Tailored to your architectural layout and room clearances.
                 </p>
-              </div>
+              </motion.div>
 
-              <div className="p-4 sm:p-5 bg-charcoal-deep/60 border border-charcoal-border">
+              <motion.div variants={fadeInUp} className="p-4 sm:p-5 bg-charcoal-deep/60 border border-charcoal-border hover:border-brass/40 transition-colors">
                 <Layers className="w-5 h-5 text-brass mb-2.5" />
                 <h4 className="text-sm uppercase tracking-wider font-bold text-ivory mb-1.5">
                   Seasoned Hardwood
@@ -112,9 +161,9 @@ export const BrandIntroSection: React.FC<BrandIntroSectionProps> = ({ onOpenQuot
                 <p className="text-xs sm:text-sm text-ivory/80 leading-relaxed">
                   Kiln-dried Chittagong teak, solid mahogany, and marble.
                 </p>
-              </div>
+              </motion.div>
 
-              <div className="p-4 sm:p-5 bg-charcoal-deep/60 border border-charcoal-border">
+              <motion.div variants={fadeInUp} className="p-4 sm:p-5 bg-charcoal-deep/60 border border-charcoal-border hover:border-brass/40 transition-colors">
                 <Award className="w-5 h-5 text-brass mb-2.5" />
                 <h4 className="text-sm uppercase tracking-wider font-bold text-ivory mb-1.5">
                   Master Artisans
@@ -122,11 +171,17 @@ export const BrandIntroSection: React.FC<BrandIntroSectionProps> = ({ onOpenQuot
                 <p className="text-xs sm:text-sm text-ivory/80 leading-relaxed">
                   Generational woodcarvers and joiners in our in-house atelier.
                 </p>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
             {/* Consultation Trigger */}
-            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, ease: LUXURY_EASE }}
+              className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 max-w-3xl"
+            >
               <Button
                 variant="brass"
                 size="md"
@@ -145,10 +200,11 @@ export const BrandIntroSection: React.FC<BrandIntroSectionProps> = ({ onOpenQuot
               >
                 Visit Flagship Showroom →
               </a>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
     </section>
   )
 }
+

@@ -1,8 +1,10 @@
 import React from 'react'
+import { motion } from 'motion/react'
 import { MapPin, Phone, Clock, Mail, ExternalLink, Award, Navigation } from 'lucide-react'
 import { siteConfig } from '../../config/site'
 import { brandTimelineData } from '../../data/timeline'
 import { Button } from '../ui/Button'
+import { LUXURY_EASE, fadeInUp, staggerContainer } from '../../lib/motion'
 
 export const ShowroomSection: React.FC = () => {
   return (
@@ -11,28 +13,40 @@ export const ShowroomSection: React.FC = () => {
       aria-label="Agrabad Showroom & Brand Heritage"
       className="py-20 md:py-28 bg-ivory border-t border-sand-border relative"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="max-w-3xl text-left mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-sand/80 border border-sand-border text-xs sm:text-sm uppercase tracking-[0.18em] text-charcoal-brown font-semibold mb-3">
+      <div className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        {/* Section Header with Staggered Scroll Entrance */}
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.25 }}
+          className="max-w-4xl text-left mb-16"
+        >
+          <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-sand/80 border border-sand-border text-xs sm:text-sm uppercase tracking-[0.18em] text-charcoal-brown font-semibold mb-3">
             <MapPin className="w-4 h-4 text-brass" />
             <span>Physical Showroom Presence</span>
-          </div>
+          </motion.div>
 
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-charcoal-teal leading-tight mb-4">
+          <motion.h2 variants={fadeInUp} className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-charcoal-teal leading-tight mb-4">
             Visit Our Flagship Studio on <br />
             <span className="italic font-medium">Agrabad Access Road.</span>
-          </h2>
+          </motion.h2>
 
-          <p className="text-base sm:text-lg text-brown-muted leading-relaxed font-light">
+          <motion.p variants={fadeInUp} className="text-base sm:text-lg text-brown-muted leading-relaxed font-light">
             We invite you to experience the tactile luxury of hand-rubbed timber grains, solid brass hardware, and ergonomic seating in our curated Chattogram showroom.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* Showroom Cards & Details */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20 items-stretch">
           {/* Showroom Profile Card */}
-          <div className="lg:col-span-6 bg-charcoal-teal text-ivory p-8 sm:p-10 border border-charcoal-border shadow-xl flex flex-col justify-between">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, ease: LUXURY_EASE }}
+            className="lg:col-span-6 bg-charcoal-teal text-ivory p-8 sm:p-10 border border-charcoal-border shadow-xl flex flex-col justify-between"
+          >
             <div className="space-y-6">
               <div className="flex items-center justify-between border-b border-charcoal-border pb-4">
                 <div>
@@ -111,14 +125,22 @@ export const ShowroomSection: React.FC = () => {
                 Message via WhatsApp
               </Button>
             </div>
-          </div>
+          </motion.div>
 
           {/* Showroom Imagery Showcase Card */}
-          <div className="lg:col-span-6 flex flex-col gap-4">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: LUXURY_EASE }}
+            className="lg:col-span-6 flex flex-col gap-4"
+          >
             <div className="relative overflow-hidden border border-sand-border shadow-lg bg-charcoal-deep flex-1 group">
               <img
-                src="/images/brand-fb-cover.png"
+                src="/images/brand-fb-cover.webp"
                 alt="Heaven Furniture Mart Showroom Banner and collections"
+                width={851}
+                height={315}
                 loading="lazy"
                 decoding="async"
                 className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-700 min-h-[260px]"
@@ -135,30 +157,40 @@ export const ShowroomSection: React.FC = () => {
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              <div className="relative overflow-hidden border border-sand-border aspect-16/10 bg-charcoal-deep">
+              <div className="relative overflow-hidden border border-sand-border aspect-16/10 bg-charcoal-deep group">
                 <img
-                  src="/images/bedroom-1.jpg"
+                  src="/images/bedroom-1.webp"
                   alt="Solid teak master bedroom display"
+                  width={600}
+                  height={375}
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-104 transition-transform duration-700"
                 />
               </div>
-              <div className="relative overflow-hidden border border-sand-border aspect-16/10 bg-charcoal-deep">
+              <div className="relative overflow-hidden border border-sand-border aspect-16/10 bg-charcoal-deep group">
                 <img
-                  src="/images/modern-workspace.jpg"
+                  src="/images/modern-workspace.webp"
                   alt="Modern executive suite display"
+                  width={600}
+                  height={375}
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-104 transition-transform duration-700"
                 />
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
-        {/* Brand Milestone Timeline */}
-        <div className="bg-sand/30 border border-sand-border p-6 sm:p-10">
+        {/* Brand Milestone Timeline with Viewport Reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: LUXURY_EASE }}
+          className="bg-sand/30 border border-sand-border p-6 sm:p-10"
+        >
           <div className="flex items-center gap-2 mb-8">
             <Award className="w-5 h-5 text-brass" />
             <h3 className="font-serif text-2xl sm:text-3xl text-charcoal-teal">
@@ -184,8 +216,9 @@ export const ShowroomSection: React.FC = () => {
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
 }
+

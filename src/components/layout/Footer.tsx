@@ -14,21 +14,21 @@ export const Footer: React.FC = () => {
       <div className="absolute -top-40 right-1/4 w-96 h-96 bg-brass/5 rounded-full blur-3xl pointer-events-none" />
 
       {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 md:pb-16 relative z-10">
+      <div className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-16 pb-24 md:pb-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-14 border-b border-charcoal-border">
           {/* Brand Identity & Founder Quote Column */}
           <div className="lg:col-span-4 space-y-4">
-            <div className="flex items-center gap-2">
-              <span className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-ivory uppercase">
-                HEAVEN
-              </span>
-              <span className="text-xs tracking-[0.25em] text-brass uppercase font-semibold border-l border-charcoal-border pl-2">
-                STUDIO
-              </span>
-            </div>
-            <p className="text-xs sm:text-sm uppercase tracking-[0.22em] text-brass font-semibold">
-              FURNITURE MART • CHATTOGRAM
-            </p>
+            <a href="#hero" className="inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass" aria-label="Heaven Furniture Mart">
+              <img
+                src="/images/logo-white.webp"
+                alt="Heaven Furniture Mart"
+                width={180}
+                height={56}
+                loading="lazy"
+                decoding="async"
+                className="h-11 sm:h-12 w-auto object-contain"
+              />
+            </a>
 
             <blockquote className="text-sm text-ivory/80 italic leading-relaxed border-l-2 border-brass/80 pl-3 pt-0.5">
               "{siteConfig.founder.quote}"

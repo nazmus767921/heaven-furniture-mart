@@ -108,7 +108,7 @@ export const QuoteFormSection: React.FC<QuoteFormSectionProps> = ({
       aria-label="Request a Bespoke Quote"
       className="py-20 md:py-28 bg-sand/30 border-t border-sand-border relative"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left Column: Form Intro & Reassurance */}
           <div className="lg:col-span-5 space-y-6 text-left">

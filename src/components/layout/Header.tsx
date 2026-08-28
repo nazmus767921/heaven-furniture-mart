@@ -37,35 +37,20 @@ export const Header: React.FC = () => {
         }`}
       >
         {/* Main Brand & Actions Bar */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 flex items-center justify-between">
+        <div className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-2.5 sm:py-3 flex items-center justify-between">
           {/* Brand Identity / Logo */}
           <a
             href="#hero"
-            className="flex flex-col group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass p-1 -m-1"
+            className="flex items-center group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass py-1"
+            aria-label="Heaven Furniture Mart"
           >
-            <div className="flex items-center gap-2">
-              <span
-                className={`font-serif text-xl sm:text-2xl font-bold tracking-tight uppercase transition-colors ${
-                  isScrolled ? 'text-charcoal-teal' : 'text-ivory'
-                }`}
-              >
-                HEAVEN
-              </span>
-              <span
-                className={`text-xs tracking-[0.25em] text-brass uppercase font-semibold border-l pl-2 transition-colors ${
-                  isScrolled ? 'border-sand-dark' : 'border-white/20'
-                }`}
-              >
-                STUDIO
-              </span>
-            </div>
-            <span
-              className={`text-[10px] uppercase tracking-[0.26em] -mt-0.5 font-medium transition-colors ${
-                isScrolled ? 'text-brown-muted' : 'text-ivory/70'
-              }`}
-            >
-              FURNITURE MART • CHATTOGRAM
-            </span>
+            <img
+              src={isScrolled ? '/images/logo-dark.webp' : '/images/logo-white.webp'}
+              alt="Heaven Furniture Mart"
+              width={180}
+              height={56}
+              className="h-9 sm:h-11 w-auto object-contain transition-all duration-300"
+            />
           </a>
 
           {/* Desktop Right CTAs & Contact */}
@@ -127,7 +112,7 @@ export const Header: React.FC = () => {
               : 'border-white/10 bg-black/25'
           }`}
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <nav
               className="flex items-center justify-center gap-6 sm:gap-10 overflow-x-auto py-2 no-scrollbar"
               aria-label="Main Navigation"
@@ -163,17 +148,18 @@ export const Header: React.FC = () => {
             <div>
               {/* Drawer Header */}
               <div className="flex items-center justify-between pb-5 border-b border-sand-border">
-                <div>
-                  <h3 className="font-serif text-lg font-bold text-charcoal-teal uppercase tracking-tight">
-                    HEAVEN FURNITURE
-                  </h3>
-                  <p className="text-[10px] text-brass uppercase tracking-widest font-semibold">
-                    Bespoke Interior Studio
-                  </p>
-                </div>
+                <a href="#hero" onClick={() => setMobileMenuOpen(false)}>
+                  <img
+                    src="/images/logo-dark.webp"
+                    alt="Heaven Furniture Mart"
+                    width={150}
+                    height={47}
+                    className="h-8 sm:h-9 w-auto object-contain"
+                  />
+                </a>
                 <button
                   onClick={() => setMobileMenuOpen(false)}
-                  className="p-2 text-charcoal-brown hover:text-charcoal-teal"
+                  className="p-2 text-charcoal-brown hover:text-charcoal-teal cursor-pointer"
                   aria-label="Close menu"
                 >
                   <X className="w-5 h-5" />

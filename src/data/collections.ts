@@ -10,7 +10,7 @@ export const collectionsData: CollectionItem[] = [
     tagline: 'Hand-carved gold leaf detailing with royal botanical jacquard upholstery',
     description:
       'Individually sculpted from seasoned solid mahogany, featuring traditional hand-applied antique gold leafing and high-resilience ergonomic feather-down blend cushions.',
-    image: '/images/luxury-sofa-1.jpg',
+    image: '/images/luxury-sofa-1.webp',
     materials: ['Seasoned Solid Mahogany', 'Gold Leaf Inlay', 'Imported Jacquard Tapestry', 'High-Density Foam'],
     dimensions: 'Custom tailored to room floorplan',
     isFeatured: true,
@@ -29,7 +29,7 @@ export const collectionsData: CollectionItem[] = [
     tagline: 'Tri-panel curved glass curio with integrated warm illumination',
     description:
       'A centerpiece display cabinet featuring beveled curved glass doors, mirrored backdrop, illuminated glass shelving, and classical neoclassical crown moldings.',
-    image: '/images/luxury-living-room-2.jpg',
+    image: '/images/luxury-living-room-2.webp',
     materials: ['Solid Teak Wood Core', 'Champagne Pearl Lacquer', 'Tempered Beveled Glass', 'Solid Brass Hardware'],
     dimensions: 'W 210cm × D 55cm × H 230cm (Customizable)',
     isFeatured: true,
@@ -48,7 +48,7 @@ export const collectionsData: CollectionItem[] = [
     tagline: 'Warm earth-toned living composition with architectural symmetry',
     description:
       'Designed for refined family reception rooms with custom proportions, solid timber framing, and stain-resistant woven linen textures.',
-    image: '/images/luxury-living-room-3.jpg',
+    image: '/images/luxury-living-room-3.webp',
     materials: ['Solid Teak / Mahogany', 'Belgian Woven Linen', 'Muted Brass Accents'],
     dimensions: 'Custom scaled to room specifications',
     isFeatured: false,
@@ -68,7 +68,7 @@ export const collectionsData: CollectionItem[] = [
     tagline: 'Kiln-dried seasoned Chittagong teak with traditional mortise & tenon joinery',
     description:
       'A stately king bed anchored by deep chocolate wood grains, precision geometric headboard paneling, and an optional matching 4-door wardrobe with antique brass crown relief.',
-    image: '/images/bedroom-1.jpg',
+    image: '/images/bedroom-1.webp',
     materials: ['Seasoned Chittagong Teak', 'Hand-Rubbed Matte Polyurethane', 'Solid Brass Hardware'],
     dimensions: 'King Size (78" × 72") / Super King (84" × 78") / Bespoke Size',
     isFeatured: true,
@@ -87,7 +87,7 @@ export const collectionsData: CollectionItem[] = [
     tagline: 'Deep vertical fluted velvet headboard with mirror-accented canopy columns',
     description:
       'An opulent statement master bedroom set crafted with champagne-gold lacquered frames and plush acoustic velvet upholstery.',
-    image: '/images/bedroom-2.jpg',
+    image: '/images/bedroom-2.webp',
     materials: ['High-Grade Velvet', 'Hardwood Subframe', 'Mirrored Glass Trims', 'Gold Leaf Accents'],
     dimensions: 'Custom built to ceiling & wall clearances',
     isFeatured: false,
@@ -105,7 +105,7 @@ export const collectionsData: CollectionItem[] = [
     tagline: 'Custom floor-to-ceiling storage with integrated dressing niche',
     description:
       'Fully personalized interior storage architecture engineered for wardrobe organization, watch winders, accessory drawers, and ambient warm light sensors.',
-    image: '/images/luxury-wardrobe-1.jpg',
+    image: '/images/luxury-wardrobe-1.webp',
     materials: ['Marine Grade HDF & Natural Teak Veneer', 'Satin Brass Rails', 'Plexi Smoked Glass'],
     dimensions: 'Engineered per client wall dimensions',
     isFeatured: false,
@@ -125,7 +125,7 @@ export const collectionsData: CollectionItem[] = [
     tagline: 'Seamless Italian Calacatta composite marble top with cabriole teak legs',
     description:
       'An eight-seater dining centerpiece pairing an opulent curved natural marble tabletop with hand-carved mahogany legs and studded oxblood leather dining chairs.',
-    image: '/images/dining-1.jpg',
+    image: '/images/dining-1.webp',
     materials: ['Natural Calacatta Composite Marble', 'Solid Seasoned Mahogany', 'Top-Grain Studded Leather'],
     dimensions: 'L 240cm × W 110cm × H 76cm (6 to 12 seats available)',
     isFeatured: true,
@@ -144,7 +144,7 @@ export const collectionsData: CollectionItem[] = [
     tagline: 'Ivory lacquer finish with gold-accented high-back dining armchairs',
     description:
       'Evoking European royal banquets, this dining set is finished in gleaming cream lacquer with sculpted gold borders and damask upholstered seating.',
-    image: '/images/luxury-dining-3.jpg',
+    image: '/images/luxury-dining-3.webp',
     materials: ['High-Density Solid Hardwood', 'Multi-Coat Piano Gloss Lacquer', 'Gold Leaf Accents'],
     dimensions: 'Customizable for 6, 8, 10, or 12 diners',
     isFeatured: false,
@@ -162,7 +162,7 @@ export const collectionsData: CollectionItem[] = [
     tagline: 'Ergonomic sculptured timber chairs with custom upholstery patterns',
     description:
       'Handmade dining chairs designed for hours of comfortable entertaining, available in custom leather, damask, velvet, or linen.',
-    image: '/images/chairs-1.jpg',
+    image: '/images/chairs-1.webp',
     materials: ['Solid Teak Wood', 'High-Resilience Cold-Cured Foam', 'Bespoke Designer Textiles'],
     dimensions: 'Standard & Wide Host Chair variants',
     isFeatured: false,
@@ -182,7 +182,7 @@ export const collectionsData: CollectionItem[] = [
     tagline: 'Architectural minimalism with powder-coated steel and natural wood veneers',
     description:
       'Designed for business leaders and modern penthouses. Combines clean structural lines, concealed wire conduits, integrated return cabinets, and executive ergonomics.',
-    image: '/images/modern-workspace.jpg',
+    image: '/images/modern-workspace.webp',
     materials: ['Natural Oak / Teak Veneers', 'Matte Black Powder-Coated Steel', 'Solid Core Acoustic Paneling'],
     dimensions: 'Desk: W 200cm × D 90cm × H 75cm + Credenza W 160cm',
     isFeatured: true,
@@ -201,7 +201,7 @@ export const collectionsData: CollectionItem[] = [
     tagline: 'Spacious dual-surface executive workstation with expansive storage',
     description:
       'Engineered for maximum productivity, presenting a commanding executive profile with acoustic privacy screens and natural grain warmth.',
-    image: '/images/modern-workspace-2.jpg',
+    image: '/images/modern-workspace-2.webp',
     materials: ['Engineered Hardwood', 'Anodized Aluminum Trim', 'Custom Veneer Layup'],
     dimensions: 'Custom configured to room orientation (Left/Right return)',
     isFeatured: false,
@@ -219,7 +219,7 @@ export const collectionsData: CollectionItem[] = [
     tagline: 'Commanding conference table for 8 to 20 executive seats',
     description:
       'A statement conference table with integrated audio-visual ports, microphone wiring channels, and high-impact natural grain bookmatched veneers.',
-    image: '/images/modern-workspace-4.jpg',
+    image: '/images/modern-workspace-4.webp',
     materials: ['Solid Core Boardroom Top', 'Structural Steel Sub-frame', 'Concealed AV Hatch'],
     dimensions: 'L 300cm to 600cm × W 140cm',
     isFeatured: false,

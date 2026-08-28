@@ -178,7 +178,7 @@ All brand data and copy are cleanly decoupled from the UI components:
 | **Trust Pillars** | `src/data/trustPoints.ts` | Customize the 8 trust signals. |
 | **Bespoke Process Steps** | `src/data/bespokeProcess.ts` | Update timelines and deliverables. |
 | **Milestone Timeline** | `src/data/timeline.ts` | Add new corporate milestones. |
-| **Catalog & Showroom Images** | `public/images/` | Replace existing `.jpg`/`.png` files with same names, or update paths in `src/data/collections.ts`. |
+| **Catalog & Showroom Images** | `public/images/` | High-performance `.webp` format. Replace with new `.webp` files or update paths in `src/data/collections.ts`. |
 | **Favicon & Logo** | `public/favicon.svg` | Replace SVG vector mark. |
 
 ---

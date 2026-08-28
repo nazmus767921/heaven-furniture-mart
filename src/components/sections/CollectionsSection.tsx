@@ -5,6 +5,8 @@ import { collectionsData, categoryTabs } from '../../data/collections'
 import { FurnitureCategory, CollectionItem } from '../../types'
 import { Button } from '../ui/Button'
 
+import { LUXURY_EASE } from '../../lib/motion'
+
 interface CollectionsSectionProps {
   onInspectItem: (item: CollectionItem, index: number) => void
   onSelectForQuote: (item: CollectionItem) => void
@@ -68,17 +70,17 @@ export const CollectionsSection: React.FC<CollectionsSectionProps> = ({
     <section
       id="collections"
       aria-label="Curated Furniture Collections"
-      className="py-20 md:py-28 bg-sand/30 border-y border-sand-border relative"
+      className="pt-20 md:pt-28 pb-0 bg-sand/30 border-t border-sand-border relative"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         {/* Section Header with Staggered Scroll Motion */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
-            className="max-w-2xl text-left"
+            transition={{ duration: 0.7, ease: LUXURY_EASE }}
+            className="max-w-3xl text-left"
           >
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-sand/80 border border-sand-border text-xs sm:text-sm uppercase tracking-[0.18em] text-charcoal-brown font-semibold mb-3">
               <Layers className="w-4 h-4 text-brass" />
@@ -100,7 +102,7 @@ export const CollectionsSection: React.FC<CollectionsSectionProps> = ({
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.7, delay: 0.15, ease: [0.32, 0.72, 0, 1] }}
+            transition={{ duration: 0.7, delay: 0.15, ease: LUXURY_EASE }}
             className="shrink-0"
           >
             <a
@@ -113,12 +115,12 @@ export const CollectionsSection: React.FC<CollectionsSectionProps> = ({
           </motion.div>
         </div>
 
-        {/* Category Navigation Tabs */}
+        {/* Category Navigation Tabs with Smooth Animated Pill */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.5, ease: LUXURY_EASE }}
           className="flex items-center gap-2.5 overflow-x-auto pb-4 mb-10 no-scrollbar border-b border-sand-border"
         >
           {categoryTabs.map((tab) => {
@@ -127,16 +129,23 @@ export const CollectionsSection: React.FC<CollectionsSectionProps> = ({
               <button
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key)}
-                className={`relative px-4 sm:px-5 py-2.5 text-xs sm:text-sm uppercase tracking-wider font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer border ${
+                className={`relative px-4 sm:px-5 py-2.5 text-xs sm:text-sm uppercase tracking-wider font-semibold whitespace-nowrap transition-colors duration-200 cursor-pointer border ${
                   isActive
-                    ? 'bg-charcoal-teal text-ivory border-charcoal-teal'
+                    ? 'text-ivory border-charcoal-teal'
                     : 'bg-ivory text-charcoal-brown hover:bg-sand/70 border-sand-border'
                 }`}
               >
-                <span className="flex items-center gap-2">
+                {isActive && (
+                  <motion.div
+                    layoutId="activeTabBadge"
+                    className="absolute inset-0 bg-charcoal-teal z-0"
+                    transition={{ type: 'spring', damping: 26, stiffness: 220 }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center gap-2">
                   <span>{tab.label}</span>
                   <span
-                    className={`text-xs px-2 py-0.5 font-mono ${
+                    className={`text-xs px-2 py-0.5 font-mono transition-colors ${
                       isActive ? 'bg-brass text-charcoal-deep font-bold' : 'bg-sand text-charcoal-brown'
                     }`}
                   >
@@ -168,8 +177,8 @@ export const CollectionsSection: React.FC<CollectionsSectionProps> = ({
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-40px' }}
                   exit={{ opacity: 0, scale: 0.98 }}
-                  transition={{ duration: 0.5, delay: (index % 4) * 0.06, ease: [0.32, 0.72, 0, 1] }}
-                  className={`${colSpan} col-span-1 bg-ivory border border-sand-border hover:border-charcoal-teal/60 transition-colors duration-300 flex flex-col justify-between group overflow-hidden`}
+                  transition={{ duration: 0.55, delay: (index % 4) * 0.05, ease: LUXURY_EASE }}
+                  className={`${colSpan} col-span-1 bg-ivory border border-sand-border hover:border-brass/60 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group overflow-hidden`}
                 >
                   {/* Image Container with Click / Hover Inspect */}
                   <div
@@ -321,43 +330,41 @@ export const CollectionsSection: React.FC<CollectionsSectionProps> = ({
               </div>
             </motion.div>
           )}
-
-          {/* All Collections View: Full-width Atelier Banner (12 cols) at the end of the bento grid */}
-          {activeTab === 'all' && (
-            <motion.div
-              layout
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="md:col-span-12 col-span-1 bg-charcoal-teal text-ivory border border-charcoal-border p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6"
-            >
-              <div className="space-y-2.5 text-left max-w-2xl">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-charcoal-surface border border-charcoal-border text-xs sm:text-sm uppercase tracking-[0.18em] text-brass font-semibold">
-                  <SlidersHorizontal className="w-4 h-4" />
-                  <span>Atelier Customization</span>
-                </div>
-                <h3 className="font-serif text-2xl sm:text-3xl text-ivory leading-snug">
-                  Have a Specific Architectural Layout in Mind?
-                </h3>
-                <p className="text-sm sm:text-base text-ivory/85 leading-relaxed font-light">
-                  Our master woodcraft artisans in Agrabad engineer furniture scaled directly to your apartment or villa floorplan.
-                </p>
-              </div>
-
-              <div className="shrink-0">
-                <Button
-                  variant="brass"
-                  size="md"
-                  href="#quote"
-                  icon={<Compass className="w-4 h-4" />}
-                >
-                  Consult Studio Architect
-                </Button>
-              </div>
-            </motion.div>
-          )}
         </motion.div>
+      </div>
+
+      {/* Edge-to-Edge Architectural Layout Banner */}
+      <div className="w-full mt-16 sm:mt-20 bg-charcoal-teal text-ivory border-y border-charcoal-border py-12 sm:py-16 relative overflow-hidden">
+        {/* Subtle ambient lighting */}
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-brass/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-10 w-96 h-96 bg-charcoal-deep/60 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="space-y-3 text-center md:text-left max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-charcoal-surface border border-charcoal-border text-xs sm:text-sm uppercase tracking-[0.18em] text-brass font-semibold">
+              <SlidersHorizontal className="w-4 h-4 text-brass" />
+              <span>Atelier Customization</span>
+            </div>
+            <h3 className="font-serif text-3xl sm:text-4xl text-ivory leading-snug">
+              Have a Specific Architectural Layout in Mind?
+            </h3>
+            <p className="text-sm sm:text-base text-ivory/85 leading-relaxed font-light">
+              Our master woodcraft artisans in Agrabad engineer furniture scaled directly to your apartment or villa floorplan.
+            </p>
+          </div>
+
+          <div className="shrink-0 w-full sm:w-auto flex justify-center">
+            <Button
+              variant="brass"
+              size="md"
+              href="#quote"
+              icon={<Compass className="w-4 h-4" />}
+              className="w-full sm:w-auto"
+            >
+              Consult Studio Architect
+            </Button>
+          </div>
+        </div>
       </div>
     </section>
   )
