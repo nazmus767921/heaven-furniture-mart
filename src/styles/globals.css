@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@theme {
+  --color-charcoal-teal: #172522;
+  --color-charcoal-deep: #0F1816;
+  --color-charcoal-surface: #1E2F2B;
+  --color-charcoal-muted: #273C37;
+  --color-charcoal-border: #2E453F;
+
+  --color-ivory: #F5F1E8;
+  --color-ivory-light: #FAF8F3;
+  --color-ivory-muted: #ECE5D7;
+
+  --color-sand: #E7DED0;
+  --color-sand-light: #F1ECE3;
+  --color-sand-dark: #D5C7B4;
+  --color-sand-border: #DDD3C3;
+
+  --color-charcoal-brown: #332820;
+  --color-brown-muted: #5C4B3E;
+  --color-brown-light: #736052;
+
+  --color-brass: #B79A65;
+  --color-brass-light: #CBBA8A;
+  --color-brass-dark: #967C4B;
+  --color-brass-accent: #E5C37A;
+
+  --color-wood: #9A7656;
+  --color-wood-light: #B28E6E;
+  --color-wood-dark: #7A5A3E;
+
+  --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+@layer base {
+  html {
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--color-ivory);
+    color: var(--color-charcoal-brown);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, .font-serif {
+    font-family: var(--font-serif);
+    letter-spacing: -0.015em;
+  }
+
+  /* Custom subtle scrollbar */
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #F5F1E8;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #D5C7B4;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #B79A65;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Editorial line clamp and decorative styles */
+.editorial-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(183, 154, 101, 0.45), transparent);
+}
+
+.editorial-rule-dark {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(231, 222, 208, 0.35), transparent);
+}
+
+.gold-glow {
+  box-shadow: 0 0 25px -5px rgba(183, 154, 101, 0.25);
+}
