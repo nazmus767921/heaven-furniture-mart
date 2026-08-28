@@ -68,11 +68,13 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
       role="dialog"
       aria-modal="true"
       aria-labelledby="lightbox-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-10 bg-charcoal-deep/90 backdrop-blur-md transition-opacity duration-300"
+      style={{ viewTransitionName: 'lightbox-backdrop' }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-10 bg-charcoal-deep/90 backdrop-blur-md"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-5xl max-h-[92vh] overflow-hidden bg-ivory rounded-none border border-sand-border/80 shadow-2xl flex flex-col md:flex-row"
+        style={{ viewTransitionName: 'lightbox-card' }}
+        className="relative w-full max-w-5xl max-h-[92vh] overflow-hidden bg-ivory rounded-none border border-sand-border/80 flex flex-col md:flex-row"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
@@ -85,10 +87,11 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
         </button>
 
         {/* Image Display Area */}
-        <div className="relative md:w-3/5 bg-charcoal-deep/95 flex items-center justify-center min-h-[320px] md:min-h-[520px]">
+        <div className="relative md:w-3/5 bg-charcoal-deep/95 flex items-center justify-center min-h-[320px] md:min-h-[520px] overflow-hidden">
           <img
             src={currentItem.image}
             alt={currentItem.title}
+            style={{ viewTransitionName: 'active-collection-image' }}
             className="w-full h-full object-contain max-h-[75vh]"
           />
 
@@ -114,44 +117,47 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
           )}
 
           {/* Item Counter */}
-          <div className="absolute bottom-3 left-3 bg-charcoal-deep/80 text-ivory/80 text-[11px] font-mono tracking-widest px-2.5 py-1 border border-charcoal-border">
+          <div className="absolute bottom-3 left-3 bg-charcoal-deep/85 text-ivory/90 text-xs font-mono tracking-wider px-3 py-1.5 border border-charcoal-border font-semibold">
             {currentIndex + 1} / {items.length}
           </div>
         </div>
 
         {/* Details & Inquiries Panel */}
-        <div className="md:w-2/5 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto max-h-[50vh] md:max-h-[85vh] bg-ivory">
+        <div
+          style={{ viewTransitionName: 'lightbox-details' }}
+          className="md:w-2/5 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto max-h-[50vh] md:max-h-[85vh] bg-ivory"
+        >
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-[11px] uppercase tracking-widest text-brass font-semibold">
+              <span className="text-xs uppercase tracking-wider text-brass font-bold">
                 {currentItem.categoryLabel}
               </span>
               <span className="text-sand-dark">•</span>
-              <span className="text-[11px] text-brown-muted tracking-wider">Bespoke Atelier</span>
+              <span className="text-xs text-brown-muted tracking-wider font-semibold">Bespoke Atelier</span>
             </div>
 
             <h2 id="lightbox-title" className="font-serif text-2xl sm:text-3xl text-charcoal-teal leading-tight mb-2">
               {currentItem.title}
             </h2>
 
-            <p className="text-xs text-brass-dark font-medium italic mb-4">
+            <p className="text-sm sm:text-base text-brass-dark font-medium italic mb-3.5">
               "{currentItem.tagline}"
             </p>
 
-            <p className="text-xs text-brown-muted leading-relaxed mb-5">
+            <p className="text-sm sm:text-base text-charcoal-brown/85 leading-relaxed mb-5 font-light">
               {currentItem.description}
             </p>
 
             {/* Materials List */}
             <div className="mb-5">
-              <h4 className="text-[11px] uppercase tracking-widest text-charcoal-brown font-semibold mb-2">
+              <h4 className="text-xs uppercase tracking-wider text-charcoal-teal font-bold mb-2">
                 Materials & Composition
               </h4>
               <div className="flex flex-wrap gap-1.5">
                 {currentItem.materials.map((mat, i) => (
                   <span
                     key={i}
-                    className="inline-block text-[11px] px-2.5 py-1 bg-sand/60 text-charcoal-brown border border-sand-border"
+                    className="inline-block text-xs px-3 py-1 bg-sand/60 text-charcoal-brown font-medium border border-sand-border"
                   >
                     {mat}
                   </span>
@@ -162,13 +168,13 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
             {/* Key Features */}
             {currentItem.features.length > 0 && (
               <div className="mb-6">
-                <h4 className="text-[11px] uppercase tracking-widest text-charcoal-brown font-semibold mb-2">
+                <h4 className="text-xs uppercase tracking-wider text-charcoal-teal font-bold mb-2">
                   Artisanal Highlights
                 </h4>
-                <ul className="space-y-1.5">
+                <ul className="space-y-2">
                   {currentItem.features.map((feat, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-xs text-brown-muted">
-                      <Check className="w-3.5 h-3.5 text-brass mt-0.5 shrink-0" />
+                    <li key={idx} className="flex items-start gap-2.5 text-sm text-charcoal-brown/85">
+                      <Check className="w-4 h-4 text-brass mt-0.5 shrink-0" />
                       <span>{feat}</span>
                     </li>
                   ))}

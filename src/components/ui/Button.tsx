@@ -49,9 +49,9 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
     }
 
     const sizes = {
-      sm: 'text-xs uppercase tracking-wider px-3.5 py-2 gap-1.5 min-h-[36px]',
-      md: 'text-xs uppercase tracking-wider px-5 py-3 gap-2 min-h-[44px]',
-      lg: 'text-sm uppercase tracking-widest px-7 py-3.5 gap-2.5 min-h-[50px]',
+      sm: 'text-xs sm:text-[13px] uppercase tracking-wider px-4 py-2 gap-2 min-h-[38px]',
+      md: 'text-xs sm:text-sm uppercase tracking-wider px-5 py-3 gap-2 min-h-[46px]',
+      lg: 'text-sm sm:text-base uppercase tracking-widest px-7 py-3.5 gap-2.5 min-h-[52px]',
     }
 
     const combinedClassName = cn(baseStyles, variants[variant], sizes[size], className)

@@ -104,7 +104,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenQuote }) => {
       </div>
 
       {/* Main Content Area - Vertically balanced accounting for fixed navbar */}
-      <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32 md:pt-36 pb-12 flex-1 flex flex-col justify-center">
+      <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-32 sm:pt-36 md:pt-40 pb-12 flex-1 flex flex-col justify-center">
         <div className="max-w-3xl space-y-6 sm:space-y-7">
           {/* Eyebrow Label */}
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white/10 backdrop-blur-md border border-white/15 rounded-full text-xs uppercase tracking-[0.2em] text-brass-accent font-medium shadow-sm">
@@ -143,7 +143,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenQuote }) => {
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2">
             <Button
               variant="brass"
-              size="lg"
+              size="md"
               onClick={onOpenQuote}
               icon={<ArrowRight className="w-4 h-4" />}
               iconPosition="right"
@@ -154,7 +154,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenQuote }) => {
 
             <Button
               variant="whatsapp"
-              size="lg"
+              size="md"
               href={siteConfig.contact.whatsAppUrl}
               target="_blank"
               icon={<MessageSquare className="w-4 h-4" />}
@@ -164,7 +164,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenQuote }) => {
 
             <Button
               variant="dark-outline"
-              size="lg"
+              size="md"
               href="#collections"
             >
               View Collections

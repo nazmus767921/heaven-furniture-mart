@@ -33,8 +33,35 @@ export const App: React.FC = () => {
   }
 
   const handleInspectItem = (_item: CollectionItem, index: number) => {
-    setActiveLightboxIndex(index)
-    setIsLightboxOpen(true)
+    if ('startViewTransition' in document) {
+      document.startViewTransition(() => {
+        setActiveLightboxIndex(index)
+        setIsLightboxOpen(true)
+      })
+    } else {
+      setActiveLightboxIndex(index)
+      setIsLightboxOpen(true)
+    }
+  }
+
+  const handleCloseLightbox = () => {
+    if ('startViewTransition' in document) {
+      document.startViewTransition(() => {
+        setIsLightboxOpen(false)
+      })
+    } else {
+      setIsLightboxOpen(false)
+    }
+  }
+
+  const handleNavigateLightbox = (newIndex: number) => {
+    if ('startViewTransition' in document) {
+      document.startViewTransition(() => {
+        setActiveLightboxIndex(newIndex)
+      })
+    } else {
+      setActiveLightboxIndex(newIndex)
+    }
   }
 
   const handleSelectForQuote = (item: CollectionItem) => {
@@ -59,6 +86,7 @@ export const App: React.FC = () => {
         <CollectionsSection
           onInspectItem={handleInspectItem}
           onSelectForQuote={handleSelectForQuote}
+          activeLightboxIndex={activeLightboxIndex}
         />
         <BespokeHighlightSection onOpenQuote={() => handleOpenQuote('bespoke')} />
         <ShowroomSection />
@@ -80,8 +108,8 @@ export const App: React.FC = () => {
         isOpen={isLightboxOpen}
         items={collectionsData}
         currentIndex={activeLightboxIndex}
-        onClose={() => setIsLightboxOpen(false)}
-        onNavigate={(newIndex) => setActiveLightboxIndex(newIndex)}
+        onClose={handleCloseLightbox}
+        onNavigate={handleNavigateLightbox}
         onSelectForQuote={handleSelectForQuote}
       />
     </div>

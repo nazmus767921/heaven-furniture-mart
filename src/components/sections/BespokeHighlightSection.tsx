@@ -20,8 +20,8 @@ export const BespokeHighlightSection: React.FC<BespokeHighlightSectionProps> = (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl text-left mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-sand/80 border border-sand-border text-xs uppercase tracking-[0.2em] text-charcoal-brown font-semibold mb-3">
-            <Sliders className="w-3.5 h-3.5 text-brass" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-sand/80 border border-sand-border text-xs sm:text-sm uppercase tracking-[0.18em] text-charcoal-brown font-semibold mb-3">
+            <Sliders className="w-4 h-4 text-brass" />
             <span>Tailored Architecture</span>
           </div>
 
@@ -30,36 +30,36 @@ export const BespokeHighlightSection: React.FC<BespokeHighlightSectionProps> = (
             <span className="italic font-medium">From Blueprint to Living Space.</span>
           </h2>
 
-          <p className="text-sm sm:text-base text-brown-muted leading-relaxed font-light">
+          <p className="text-base sm:text-lg text-brown-muted leading-relaxed font-light">
             Whether you are furnishing a new duplex in Khulshi, renovating an apartment in Nasirabad, or outfitting an executive suite in Agrabad, our master artisans translate your vision into enduring heirloom timber.
           </p>
         </div>
 
         {/* Step Navigation Tabs */}
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-3 mb-10">
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5 sm:gap-3.5 mb-10">
           {bespokeProcessData.map((step, idx) => {
             const isSelected = activeStepIndex === idx
             return (
               <button
                 key={step.stepNumber}
                 onClick={() => setActiveStepIndex(idx)}
-                className={`p-4 text-left border transition-all duration-200 cursor-pointer flex flex-col justify-between ${
+                className={`p-4 sm:p-5 text-left border transition-all duration-200 cursor-pointer flex flex-col justify-between ${
                   isSelected
                     ? 'bg-charcoal-teal text-ivory border-charcoal-teal shadow-md'
                     : 'bg-sand/40 hover:bg-sand/70 text-charcoal-brown border-sand-border'
                 }`}
               >
-                <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center justify-between mb-2.5">
                   <span
-                    className={`font-mono text-xs tracking-widest font-bold ${
+                    className={`font-mono text-xs sm:text-sm tracking-wider font-bold ${
                       isSelected ? 'text-brass' : 'text-brass-dark'
                     }`}
                   >
                     PHASE {step.stepNumber}
                   </span>
-                  <Clock className={`w-3.5 h-3.5 ${isSelected ? 'text-brass' : 'text-brown-muted'}`} />
+                  <Clock className={`w-4 h-4 ${isSelected ? 'text-brass' : 'text-brown-muted'}`} />
                 </div>
-                <h3 className="font-serif text-sm sm:text-base font-semibold leading-snug line-clamp-2">
+                <h3 className="font-serif text-base sm:text-lg font-semibold leading-snug line-clamp-2">
                   {step.title}
                 </h3>
               </button>
@@ -70,11 +70,11 @@ export const BespokeHighlightSection: React.FC<BespokeHighlightSectionProps> = (
         {/* Active Step Detailed Showcase Panel */}
         <div className="bg-sand/30 border border-sand-border p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-7 space-y-6">
-            <div className="flex items-center gap-3">
-              <span className="text-xs uppercase tracking-widest px-3 py-1 bg-charcoal-teal text-brass font-mono font-bold">
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="text-xs sm:text-sm uppercase tracking-wider px-3.5 py-1.5 bg-charcoal-teal text-brass font-mono font-bold">
                 Step {currentStep.stepNumber} of 05
               </span>
-              <span className="text-xs text-brown-muted font-medium">
+              <span className="text-sm text-brown-muted font-medium">
                 Estimated Duration: <strong className="text-charcoal-teal">{currentStep.duration}</strong>
               </span>
             </div>
@@ -83,23 +83,23 @@ export const BespokeHighlightSection: React.FC<BespokeHighlightSectionProps> = (
               {currentStep.title}
             </h3>
 
-            <p className="text-sm text-brown-muted leading-relaxed">
+            <p className="text-base sm:text-lg text-charcoal-brown/90 leading-relaxed font-light">
               {currentStep.description}
             </p>
 
             {/* Deliverables Checklist */}
-            <div className="pt-2 space-y-2.5">
-              <h4 className="text-xs uppercase tracking-widest text-charcoal-teal font-semibold">
+            <div className="pt-2 space-y-3">
+              <h4 className="text-xs sm:text-sm uppercase tracking-wider text-charcoal-teal font-bold">
                 What We Deliver in This Phase:
               </h4>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {currentStep.deliverables.map((item, i) => (
                   <li
                     key={i}
-                    className="flex items-start gap-2 text-xs text-charcoal-brown bg-ivory/80 p-2.5 border border-sand-border"
+                    className="flex items-start gap-2.5 text-sm text-charcoal-brown bg-ivory/90 p-3 border border-sand-border"
                   >
                     <Check className="w-4 h-4 text-brass shrink-0 mt-0.5" />
-                    <span>{item}</span>
+                    <span className="leading-snug">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -131,13 +131,13 @@ export const BespokeHighlightSection: React.FC<BespokeHighlightSectionProps> = (
               <div className="absolute inset-0 bg-gradient-to-t from-charcoal-deep/90 via-transparent to-transparent" />
 
               <div className="absolute bottom-5 left-5 right-5 text-ivory">
-                <span className="text-[10px] uppercase tracking-widest text-brass font-bold block mb-1">
+                <span className="text-xs uppercase tracking-wider text-brass font-bold block mb-1">
                   Custom Millwork & Storage
                 </span>
-                <p className="font-serif text-lg text-ivory">
+                <p className="font-serif text-xl text-ivory">
                   Precision Built-In Wardrobes & Consoles
                 </p>
-                <p className="text-xs text-ivory/70 mt-1">
+                <p className="text-sm text-ivory/80 mt-1">
                   Engineered to exact ceiling & wall plumb lines
                 </p>
               </div>

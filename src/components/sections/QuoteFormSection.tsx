@@ -112,8 +112,8 @@ export const QuoteFormSection: React.FC<QuoteFormSectionProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left Column: Form Intro & Reassurance */}
           <div className="lg:col-span-5 space-y-6 text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-sand/80 border border-sand-border text-xs uppercase tracking-[0.2em] text-charcoal-brown font-semibold">
-              <Sparkles className="w-3.5 h-3.5 text-brass" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-sand/80 border border-sand-border text-xs sm:text-sm uppercase tracking-[0.18em] text-charcoal-brown font-semibold">
+              <Sparkles className="w-4 h-4 text-brass" />
               <span>Complimentary Quote & Consultation</span>
             </div>
 
@@ -122,22 +122,22 @@ export const QuoteFormSection: React.FC<QuoteFormSectionProps> = ({
               <span className="italic font-medium">Bespoke Living Space.</span>
             </h2>
 
-            <p className="text-sm sm:text-base text-brown-muted leading-relaxed font-light">
+            <p className="text-base sm:text-lg text-brown-muted leading-relaxed font-light">
               Share your room dimensions, furniture requirements, or inspirational sketches. Our senior designers will review your vision and provide tailored material recommendations and an itemized quotation.
             </p>
 
             {/* Direct WhatsApp Callout */}
             <div className="p-6 bg-ivory border border-sand-border space-y-3">
-              <div className="flex items-center gap-2 text-xs font-semibold text-charcoal-teal uppercase tracking-wider">
+              <div className="flex items-center gap-2 text-sm font-semibold text-charcoal-teal uppercase tracking-wider">
                 <MessageSquare className="w-4 h-4 text-[#25D366]" />
                 <span>Prefer Instant Messaging?</span>
               </div>
-              <p className="text-xs text-brown-muted leading-relaxed">
+              <p className="text-sm text-brown-muted leading-relaxed">
                 Connect immediately with our Agrabad studio design team on WhatsApp for prompt questions, pricing estimates, and catalog previews.
               </p>
               <Button
                 variant="whatsapp"
-                size="sm"
+                size="md"
                 href={siteConfig.contact.whatsAppUrl}
                 target="_blank"
                 className="w-full sm:w-auto"
@@ -148,16 +148,16 @@ export const QuoteFormSection: React.FC<QuoteFormSectionProps> = ({
             </div>
 
             {/* Trust Badges */}
-            <div className="space-y-2 pt-2 text-xs text-brown-muted">
-              <div className="flex items-center gap-2">
+            <div className="space-y-2.5 pt-2 text-sm text-charcoal-brown/90">
+              <div className="flex items-center gap-2.5">
                 <ShieldCheck className="w-4 h-4 text-brass shrink-0" />
                 <span>100% Confidential • No high-pressure sales</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-brass shrink-0" />
                 <span>Free 3D floor plan layout consultation</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-brass shrink-0" />
                 <span>Direct factory craftsmanship pricing</span>
               </div>
@@ -174,7 +174,7 @@ export const QuoteFormSection: React.FC<QuoteFormSectionProps> = ({
                 <h3 className="font-serif text-2xl sm:text-3xl text-charcoal-teal">
                   Consultation Request Received
                 </h3>
-                <p className="text-xs sm:text-sm text-brown-muted max-w-md mx-auto leading-relaxed">
+                <p className="text-sm sm:text-base text-brown-muted max-w-md mx-auto leading-relaxed">
                   Thank you, <strong>{formData.fullName}</strong>. Our senior bespoke furniture consultant will review your requirements and reach out to you via <strong>{formData.phoneOrWhatsApp}</strong> shortly.
                 </p>
                 <div className="pt-4 flex flex-col sm:flex-row justify-center gap-3">
@@ -208,16 +208,16 @@ export const QuoteFormSection: React.FC<QuoteFormSectionProps> = ({
             ) : (
               <form onSubmit={handleSubmit} noValidate className="space-y-5">
                 <div className="border-b border-sand-border pb-4 mb-2">
-                  <h3 className="font-serif text-xl sm:text-2xl text-charcoal-teal">
+                  <h3 className="font-serif text-2xl sm:text-3xl text-charcoal-teal">
                     Request a Personalized Consultation
                   </h3>
-                  <p className="text-xs text-brown-muted mt-0.5">
+                  <p className="text-sm text-brown-muted mt-1">
                     Fill in the details below to receive your tailored proposal.
                   </p>
                 </div>
 
                 {submitError && (
-                  <div className="p-3.5 bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-start gap-2">
+                  <div className="p-3.5 bg-amber-50 border border-amber-200 text-amber-900 text-sm flex items-start gap-2">
                     <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
                     <span>{submitError}</span>
                   </div>
@@ -228,7 +228,7 @@ export const QuoteFormSection: React.FC<QuoteFormSectionProps> = ({
                   <div>
                     <label
                       htmlFor="fullName"
-                      className="block text-xs uppercase tracking-wider font-semibold text-charcoal-teal mb-1.5"
+                      className="block text-xs sm:text-sm uppercase tracking-wider font-semibold text-charcoal-teal mb-1.5"
                     >
                       Your Full Name <span className="text-red-500">*</span>
                     </label>
@@ -242,19 +242,19 @@ export const QuoteFormSection: React.FC<QuoteFormSectionProps> = ({
                         setFormData({ ...formData, fullName: e.target.value })
                         if (errors.fullName) setErrors({ ...errors, fullName: undefined })
                       }}
-                      className={`w-full px-3.5 py-2.5 bg-ivory-light border text-xs sm:text-sm text-charcoal-teal focus:outline-none focus:ring-1 focus:ring-brass transition-all ${
+                      className={`w-full px-4 py-3 bg-ivory-light border text-sm sm:text-base text-charcoal-teal focus:outline-none focus:ring-1 focus:ring-brass transition-all ${
                         errors.fullName ? 'border-red-400 bg-red-50/20' : 'border-sand-border'
                       }`}
                     />
                     {errors.fullName && (
-                      <p className="text-[11px] text-red-600 mt-1">{errors.fullName}</p>
+                      <p className="text-xs sm:text-sm text-red-600 mt-1">{errors.fullName}</p>
                     )}
                   </div>
 
                   <div>
                     <label
                       htmlFor="phoneOrWhatsApp"
-                      className="block text-xs uppercase tracking-wider font-semibold text-charcoal-teal mb-1.5"
+                      className="block text-xs sm:text-sm uppercase tracking-wider font-semibold text-charcoal-teal mb-1.5"
                     >
                       Phone / WhatsApp <span className="text-red-500">*</span>
                     </label>
@@ -268,12 +268,12 @@ export const QuoteFormSection: React.FC<QuoteFormSectionProps> = ({
                         setFormData({ ...formData, phoneOrWhatsApp: e.target.value })
                         if (errors.phoneOrWhatsApp) setErrors({ ...errors, phoneOrWhatsApp: undefined })
                       }}
-                      className={`w-full px-3.5 py-2.5 bg-ivory-light border text-xs sm:text-sm text-charcoal-teal focus:outline-none focus:ring-1 focus:ring-brass transition-all ${
+                      className={`w-full px-4 py-3 bg-ivory-light border text-sm sm:text-base text-charcoal-teal focus:outline-none focus:ring-1 focus:ring-brass transition-all ${
                         errors.phoneOrWhatsApp ? 'border-red-400 bg-red-50/20' : 'border-sand-border'
                       }`}
                     />
                     {errors.phoneOrWhatsApp && (
-                      <p className="text-[11px] text-red-600 mt-1">{errors.phoneOrWhatsApp}</p>
+                      <p className="text-xs sm:text-sm text-red-600 mt-1">{errors.phoneOrWhatsApp}</p>
                     )}
                   </div>
                 </div>
@@ -282,7 +282,7 @@ export const QuoteFormSection: React.FC<QuoteFormSectionProps> = ({
                 <div>
                   <label
                     htmlFor="requirementCategory"
-                    className="block text-xs uppercase tracking-wider font-semibold text-charcoal-teal mb-1.5"
+                    className="block text-xs sm:text-sm uppercase tracking-wider font-semibold text-charcoal-teal mb-1.5"
                   >
                     Primary Furniture Focus
                   </label>
@@ -295,7 +295,7 @@ export const QuoteFormSection: React.FC<QuoteFormSectionProps> = ({
                         requirementCategory: e.target.value as QuoteFormData['requirementCategory'],
                       })
                     }
-                    className="w-full px-3.5 py-2.5 bg-ivory-light border border-sand-border text-xs sm:text-sm text-charcoal-teal focus:outline-none focus:ring-1 focus:ring-brass cursor-pointer"
+                    className="w-full px-4 py-3 bg-ivory-light border border-sand-border text-sm sm:text-base text-charcoal-teal focus:outline-none focus:ring-1 focus:ring-brass cursor-pointer"
                   >
                     <option value="living">Living Room Suite (Sofa, Vitrine, Coffee Table)</option>
                     <option value="bedroom">Master Bedroom Set (Solid Teak Bed, Wardrobe)</option>
@@ -311,7 +311,7 @@ export const QuoteFormSection: React.FC<QuoteFormSectionProps> = ({
                 <div>
                   <label
                     htmlFor="spaceOrRoomType"
-                    className="block text-xs uppercase tracking-wider font-semibold text-charcoal-teal mb-1.5"
+                    className="block text-xs sm:text-sm uppercase tracking-wider font-semibold text-charcoal-teal mb-1.5"
                   >
                     Space Details / Specific Item (Optional)
                   </label>
@@ -321,7 +321,7 @@ export const QuoteFormSection: React.FC<QuoteFormSectionProps> = ({
                     placeholder="e.g. 14ft × 18ft drawing room in Khulshi / Inquiring about Marble Dining"
                     value={formData.spaceOrRoomType}
                     onChange={(e) => setFormData({ ...formData, spaceOrRoomType: e.target.value })}
-                    className="w-full px-3.5 py-2.5 bg-ivory-light border border-sand-border text-xs sm:text-sm text-charcoal-teal focus:outline-none focus:ring-1 focus:ring-brass"
+                    className="w-full px-4 py-3 bg-ivory-light border border-sand-border text-sm sm:text-base text-charcoal-teal focus:outline-none focus:ring-1 focus:ring-brass"
                   />
                 </div>
 
@@ -329,7 +329,7 @@ export const QuoteFormSection: React.FC<QuoteFormSectionProps> = ({
                 <div>
                   <label
                     htmlFor="approximateTimeline"
-                    className="block text-xs uppercase tracking-wider font-semibold text-charcoal-teal mb-1.5"
+                    className="block text-xs sm:text-sm uppercase tracking-wider font-semibold text-charcoal-teal mb-1.5"
                   >
                     Target Completion Timeline
                   </label>
@@ -337,7 +337,7 @@ export const QuoteFormSection: React.FC<QuoteFormSectionProps> = ({
                     id="approximateTimeline"
                     value={formData.approximateTimeline}
                     onChange={(e) => setFormData({ ...formData, approximateTimeline: e.target.value })}
-                    className="w-full px-3.5 py-2.5 bg-ivory-light border border-sand-border text-xs sm:text-sm text-charcoal-teal focus:outline-none focus:ring-1 focus:ring-brass cursor-pointer"
+                    className="w-full px-4 py-3 bg-ivory-light border border-sand-border text-sm sm:text-base text-charcoal-teal focus:outline-none focus:ring-1 focus:ring-brass cursor-pointer"
                   >
                     <option value="Immediate (1–2 weeks)">Immediate (1–2 weeks)</option>
                     <option value="Within 1 month">Within 1 month</option>
@@ -350,7 +350,7 @@ export const QuoteFormSection: React.FC<QuoteFormSectionProps> = ({
                 <div>
                   <label
                     htmlFor="customNotes"
-                    className="block text-xs uppercase tracking-wider font-semibold text-charcoal-teal mb-1.5"
+                    className="block text-xs sm:text-sm uppercase tracking-wider font-semibold text-charcoal-teal mb-1.5"
                   >
                     Project Notes & Design Preferences (Optional)
                   </label>
@@ -360,7 +360,7 @@ export const QuoteFormSection: React.FC<QuoteFormSectionProps> = ({
                     placeholder="Mention any preferred timber, stain finishes, fabrics, or special architectural requirements..."
                     value={formData.customNotes}
                     onChange={(e) => setFormData({ ...formData, customNotes: e.target.value })}
-                    className="w-full px-3.5 py-2.5 bg-ivory-light border border-sand-border text-xs sm:text-sm text-charcoal-teal focus:outline-none focus:ring-1 focus:ring-brass resize-y"
+                    className="w-full px-4 py-3 bg-ivory-light border border-sand-border text-sm sm:text-base text-charcoal-teal focus:outline-none focus:ring-1 focus:ring-brass resize-y"
                   />
                 </div>
 
@@ -378,8 +378,8 @@ export const QuoteFormSection: React.FC<QuoteFormSectionProps> = ({
                     {isSubmitting ? 'Processing Request...' : 'Send Consultation Request'}
                   </Button>
 
-                  <div className="flex items-center justify-center gap-2 pt-1 text-[11px] text-brown-muted">
-                    <HelpCircle className="w-3.5 h-3.5 text-brass" />
+                  <div className="flex items-center justify-center gap-2 pt-1 text-xs sm:text-sm text-brown-muted">
+                    <HelpCircle className="w-4 h-4 text-brass" />
                     <span>Clicking send will also generate a formatted WhatsApp summary.</span>
                   </div>
                 </div>

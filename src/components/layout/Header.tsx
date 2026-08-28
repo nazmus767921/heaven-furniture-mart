@@ -32,11 +32,12 @@ export const Header: React.FC = () => {
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled
-            ? 'bg-ivory/95 backdrop-blur-md border-b border-sand-border shadow-xs py-3 text-charcoal-brown'
-            : 'bg-charcoal-deep/40 backdrop-blur-md border-b border-white/10 py-4 sm:py-4.5 text-ivory'
+            ? 'bg-ivory/95 backdrop-blur-md border-b border-sand-border shadow-xs text-charcoal-brown'
+            : 'bg-charcoal-deep/80 backdrop-blur-md border-b border-white/10 text-ivory'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        {/* Main Brand & Actions Bar */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 flex items-center justify-between">
           {/* Brand Identity / Logo */}
           <a
             href="#hero"
@@ -44,14 +45,14 @@ export const Header: React.FC = () => {
           >
             <div className="flex items-center gap-2">
               <span
-                className={`font-serif text-xl sm:text-2xl lg:text-2xl font-bold tracking-tight uppercase transition-colors ${
+                className={`font-serif text-xl sm:text-2xl font-bold tracking-tight uppercase transition-colors ${
                   isScrolled ? 'text-charcoal-teal' : 'text-ivory'
                 }`}
               >
                 HEAVEN
               </span>
               <span
-                className={`text-[10px] tracking-[0.25em] text-brass uppercase font-semibold border-l pl-2 transition-colors ${
+                className={`text-xs tracking-[0.25em] text-brass uppercase font-semibold border-l pl-2 transition-colors ${
                   isScrolled ? 'border-sand-dark' : 'border-white/20'
                 }`}
               >
@@ -59,7 +60,7 @@ export const Header: React.FC = () => {
               </span>
             </div>
             <span
-              className={`text-[9px] uppercase tracking-[0.28em] -mt-0.5 font-medium transition-colors ${
+              className={`text-[10px] uppercase tracking-[0.26em] -mt-0.5 font-medium transition-colors ${
                 isScrolled ? 'text-brown-muted' : 'text-ivory/70'
               }`}
             >
@@ -67,28 +68,11 @@ export const Header: React.FC = () => {
             </span>
           </a>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8" aria-label="Main Navigation">
-            {navigationItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className={`text-xs uppercase tracking-widest font-semibold transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-brass hover:after:w-full after:transition-all after:duration-200 ${
-                  isScrolled
-                    ? 'text-charcoal-brown hover:text-charcoal-teal'
-                    : 'text-ivory/90 hover:text-brass-accent'
-                }`}
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
-
-          {/* Desktop Direct Conversion CTAs */}
-          <div className="hidden lg:flex items-center gap-4">
+          {/* Desktop Right CTAs & Contact */}
+          <div className="hidden sm:flex items-center gap-4">
             <a
               href={`tel:${siteConfig.contact.phoneRaw}`}
-              className={`flex items-center gap-2 text-xs font-semibold tracking-wider transition-colors px-3 py-2 ${
+              className={`flex items-center gap-2 text-xs sm:text-sm font-semibold tracking-wider transition-colors px-3 py-1.5 ${
                 isScrolled
                   ? 'text-charcoal-teal hover:text-brass'
                   : 'text-ivory hover:text-brass-accent'
@@ -111,7 +95,7 @@ export const Header: React.FC = () => {
           </div>
 
           {/* Mobile Menu Toggle Button */}
-          <div className="flex items-center gap-2 lg:hidden">
+          <div className="flex items-center gap-2 sm:hidden">
             <a
               href={`tel:${siteConfig.contact.phoneRaw}`}
               className={`p-2 transition-colors ${
@@ -132,6 +116,36 @@ export const Header: React.FC = () => {
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
+          </div>
+        </div>
+
+        {/* Thin Secondary Navigation Bar (Dedicated Specifically to Navigation Menu Links) */}
+        <div
+          className={`border-t transition-colors ${
+            isScrolled
+              ? 'border-sand-border/80 bg-sand/35'
+              : 'border-white/10 bg-black/25'
+          }`}
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav
+              className="flex items-center justify-center gap-6 sm:gap-10 overflow-x-auto py-2 no-scrollbar"
+              aria-label="Main Navigation"
+            >
+              {navigationItems.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className={`text-xs uppercase tracking-[0.18em] font-semibold whitespace-nowrap transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-brass hover:after:w-full after:transition-all after:duration-200 ${
+                    isScrolled
+                      ? 'text-charcoal-brown hover:text-charcoal-teal'
+                      : 'text-ivory/85 hover:text-brass-accent'
+                  }`}
+                >
+                  {item.label}
+                </a>
+              ))}
+            </nav>
           </div>
         </div>
       </header>

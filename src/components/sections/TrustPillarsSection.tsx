@@ -40,8 +40,8 @@ export const TrustPillarsSection: React.FC<TrustPillarsSectionProps> = ({ onOpen
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-16 text-left">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-sand/80 border border-sand-border text-xs uppercase tracking-[0.2em] text-charcoal-brown font-semibold mb-3">
-            <ShieldCheck className="w-3.5 h-3.5 text-brass" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-sand/80 border border-sand-border text-xs sm:text-sm uppercase tracking-[0.18em] text-charcoal-brown font-semibold mb-3">
+            <ShieldCheck className="w-4 h-4 text-brass" />
             <span>Uncompromising Standard</span>
           </div>
 
@@ -50,7 +50,7 @@ export const TrustPillarsSection: React.FC<TrustPillarsSectionProps> = ({ onOpen
             <span className="italic font-medium">Choose Heaven Furniture.</span>
           </h2>
 
-          <p className="text-sm sm:text-base text-brown-muted leading-relaxed font-light">
+          <p className="text-base sm:text-lg text-brown-muted leading-relaxed font-light">
             We operate on a philosophy of absolute material honesty, architectural tailoring, and complete peace of mind from the initial spatial consultation to white-glove living room installation.
           </p>
         </div>
@@ -65,19 +65,19 @@ export const TrustPillarsSection: React.FC<TrustPillarsSectionProps> = ({ onOpen
                 className="p-6 bg-sand/40 hover:bg-sand/70 border border-sand-border transition-all duration-300 group flex flex-col justify-between"
               >
                 <div>
-                  <div className="w-10 h-10 bg-ivory border border-sand-border flex items-center justify-center text-charcoal-teal group-hover:text-brass group-hover:border-brass transition-colors mb-4">
+                  <div className="w-11 h-11 bg-ivory border border-sand-border flex items-center justify-center text-charcoal-teal group-hover:text-brass group-hover:border-brass transition-colors mb-4">
                     <IconComponent className="w-5 h-5" />
                   </div>
 
-                  <span className="text-[10px] uppercase tracking-widest text-brass font-bold block mb-1">
+                  <span className="text-xs uppercase tracking-wider text-brass font-bold block mb-1">
                     {pillar.subtitle}
                   </span>
 
-                  <h3 className="font-serif text-lg text-charcoal-teal font-semibold leading-snug mb-2.5">
+                  <h3 className="font-serif text-xl text-charcoal-teal font-semibold leading-snug mb-2.5">
                     {pillar.title}
                   </h3>
 
-                  <p className="text-xs text-brown-muted leading-relaxed">
+                  <p className="text-sm text-charcoal-brown/85 leading-relaxed">
                     {pillar.description}
                   </p>
                 </div>
@@ -88,14 +88,14 @@ export const TrustPillarsSection: React.FC<TrustPillarsSectionProps> = ({ onOpen
 
         {/* Section Conversion Banner */}
         <div className="mt-14 p-6 sm:p-10 bg-charcoal-teal text-ivory border border-charcoal-border flex flex-col lg:flex-row items-center justify-between gap-6 shadow-xl">
-          <div className="space-y-1.5 text-center lg:text-left">
-            <span className="text-[10px] uppercase tracking-[0.25em] text-brass font-semibold">
+          <div className="space-y-2 text-center lg:text-left">
+            <span className="text-xs sm:text-sm uppercase tracking-[0.18em] text-brass font-semibold block">
               Complimentary Architectural Advisory
             </span>
             <h3 className="font-serif text-2xl sm:text-3xl text-ivory">
               Bring Your Floor Plan or Inspiration Photos
             </h3>
-            <p className="text-xs text-ivory/70 max-w-xl">
+            <p className="text-sm sm:text-base text-ivory/80 max-w-xl leading-relaxed font-light">
               Meet our senior furniture designers at our Agrabad showroom or consult remotely to explore timber grades, fabrics, and 3D space layouts.
             </p>
           </div>
