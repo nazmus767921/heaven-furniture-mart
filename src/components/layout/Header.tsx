@@ -32,8 +32,8 @@ export const Header: React.FC = () => {
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled
-            ? 'bg-ivory/95 backdrop-blur-md border-b border-sand-border shadow-xs py-3'
-            : 'bg-ivory/80 backdrop-blur-xs border-b border-sand-border/50 py-4.5'
+            ? 'bg-ivory/95 backdrop-blur-md border-b border-sand-border shadow-xs py-3 text-charcoal-brown'
+            : 'bg-charcoal-deep/40 backdrop-blur-md border-b border-white/10 py-4 sm:py-4.5 text-ivory'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -43,14 +43,26 @@ export const Header: React.FC = () => {
             className="flex flex-col group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass p-1 -m-1"
           >
             <div className="flex items-center gap-2">
-              <span className="font-serif text-xl sm:text-2xl lg:text-2xl font-bold tracking-tight text-charcoal-teal uppercase">
+              <span
+                className={`font-serif text-xl sm:text-2xl lg:text-2xl font-bold tracking-tight uppercase transition-colors ${
+                  isScrolled ? 'text-charcoal-teal' : 'text-ivory'
+                }`}
+              >
                 HEAVEN
               </span>
-              <span className="text-[10px] tracking-[0.25em] text-brass uppercase font-semibold border-l border-sand-dark pl-2">
+              <span
+                className={`text-[10px] tracking-[0.25em] text-brass uppercase font-semibold border-l pl-2 transition-colors ${
+                  isScrolled ? 'border-sand-dark' : 'border-white/20'
+                }`}
+              >
                 STUDIO
               </span>
             </div>
-            <span className="text-[9px] uppercase tracking-[0.28em] text-brown-muted -mt-0.5 font-medium">
+            <span
+              className={`text-[9px] uppercase tracking-[0.28em] -mt-0.5 font-medium transition-colors ${
+                isScrolled ? 'text-brown-muted' : 'text-ivory/70'
+              }`}
+            >
               FURNITURE MART • CHATTOGRAM
             </span>
           </a>
@@ -61,7 +73,11 @@ export const Header: React.FC = () => {
               <a
                 key={item.href}
                 href={item.href}
-                className="text-xs uppercase tracking-widest text-charcoal-brown hover:text-charcoal-teal font-semibold transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-brass hover:after:w-full after:transition-all after:duration-200"
+                className={`text-xs uppercase tracking-widest font-semibold transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-brass hover:after:w-full after:transition-all after:duration-200 ${
+                  isScrolled
+                    ? 'text-charcoal-brown hover:text-charcoal-teal'
+                    : 'text-ivory/90 hover:text-brass-accent'
+                }`}
               >
                 {item.label}
               </a>
@@ -72,7 +88,11 @@ export const Header: React.FC = () => {
           <div className="hidden lg:flex items-center gap-4">
             <a
               href={`tel:${siteConfig.contact.phoneRaw}`}
-              className="flex items-center gap-2 text-xs font-semibold tracking-wider text-charcoal-teal hover:text-brass transition-colors px-3 py-2"
+              className={`flex items-center gap-2 text-xs font-semibold tracking-wider transition-colors px-3 py-2 ${
+                isScrolled
+                  ? 'text-charcoal-teal hover:text-brass'
+                  : 'text-ivory hover:text-brass-accent'
+              }`}
               title="Call Agrabad Showroom"
             >
               <Phone className="w-3.5 h-3.5 text-brass" />
@@ -80,7 +100,7 @@ export const Header: React.FC = () => {
             </a>
 
             <Button
-              variant="primary"
+              variant={isScrolled ? 'primary' : 'brass'}
               size="sm"
               href="#quote"
               icon={<ArrowRight className="w-3.5 h-3.5" />}
@@ -94,7 +114,9 @@ export const Header: React.FC = () => {
           <div className="flex items-center gap-2 lg:hidden">
             <a
               href={`tel:${siteConfig.contact.phoneRaw}`}
-              className="p-2 text-charcoal-teal hover:text-brass transition-colors"
+              className={`p-2 transition-colors ${
+                isScrolled ? 'text-charcoal-teal hover:text-brass' : 'text-ivory hover:text-brass-accent'
+              }`}
               aria-label="Call studio"
             >
               <Phone className="w-4 h-4" />
@@ -102,7 +124,9 @@ export const Header: React.FC = () => {
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-charcoal-teal hover:text-brass focus:outline-none focus-visible:ring-2 focus-visible:ring-brass cursor-pointer"
+              className={`p-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-brass cursor-pointer transition-colors ${
+                isScrolled ? 'text-charcoal-teal hover:text-brass' : 'text-ivory hover:text-brass-accent'
+              }`}
               aria-expanded={mobileMenuOpen}
               aria-label="Toggle navigation menu"
             >
