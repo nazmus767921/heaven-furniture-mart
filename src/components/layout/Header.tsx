@@ -54,7 +54,7 @@ export const Header: React.FC = () => {
           </a>
 
           {/* Desktop Right CTAs & Contact */}
-          <div className="hidden sm:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-4">
             <a
               href={`tel:${siteConfig.contact.phoneRaw}`}
               className={`flex items-center gap-2 text-xs sm:text-sm font-semibold tracking-wider transition-colors px-3 py-1.5 ${
@@ -80,7 +80,7 @@ export const Header: React.FC = () => {
           </div>
 
           {/* Mobile Menu Toggle Button */}
-          <div className="flex items-center gap-2 sm:hidden">
+          <div className="flex items-center gap-2 md:hidden">
             <a
               href={`tel:${siteConfig.contact.phoneRaw}`}
               className={`p-2 transition-colors ${
@@ -104,9 +104,9 @@ export const Header: React.FC = () => {
           </div>
         </div>
 
-        {/* Thin Secondary Navigation Bar (Dedicated Specifically to Navigation Menu Links) */}
+        {/* Thin Secondary Navigation Bar (Dedicated Specifically to Navigation Menu Links - Desktop Only) */}
         <div
-          className={`border-t transition-colors ${
+          className={`hidden md:block border-t transition-colors ${
             isScrolled
               ? 'border-sand-border/80 bg-sand/35'
               : 'border-white/10 bg-black/25'
@@ -138,7 +138,7 @@ export const Header: React.FC = () => {
       {/* Mobile Drawer Backdrop & Menu */}
       {mobileMenuOpen && (
         <div
-          className="fixed inset-0 z-50 lg:hidden bg-charcoal-deep/60 backdrop-blur-xs transition-opacity"
+          className="fixed inset-0 z-50 md:hidden bg-charcoal-deep/60 backdrop-blur-xs transition-opacity"
           onClick={() => setMobileMenuOpen(false)}
         >
           <div

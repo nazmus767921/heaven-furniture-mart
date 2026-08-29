@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { motion, AnimatePresence } from 'motion/react'
+import { motion } from 'motion/react'
 import { Eye, MessageSquare, Layers, ArrowRight, Sparkles, Compass, CheckCircle2, SlidersHorizontal, Maximize2 } from 'lucide-react'
 import { collectionsData, categoryTabs } from '../../data/collections'
 import { FurnitureCategory, CollectionItem } from '../../types'
@@ -11,12 +11,14 @@ interface CollectionsSectionProps {
   onInspectItem: (item: CollectionItem, index: number) => void
   onSelectForQuote: (item: CollectionItem) => void
   activeLightboxIndex?: number
+  isLightboxOpen?: boolean
 }
 
 export const CollectionsSection: React.FC<CollectionsSectionProps> = ({
   onInspectItem,
   onSelectForQuote,
   activeLightboxIndex = 0,
+  isLightboxOpen = false,
 }) => {
   const [activeTab, setActiveTab] = useState<FurnitureCategory | 'all'>('all')
 
@@ -159,136 +161,135 @@ export const CollectionsSection: React.FC<CollectionsSectionProps> = ({
 
         {/* Bento Grid: 12-Column Layout */}
         <motion.div
-          layout
+          key={activeTab}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, ease: LUXURY_EASE }}
           className="grid grid-cols-1 md:grid-cols-12 gap-6"
         >
-          <AnimatePresence mode="popLayout">
-            {filteredItems.map((item, index) => {
-              const originalIndex = collectionsData.findIndex((c) => c.id === item.id)
-              const colSpan = getColSpan(index, activeTab === 'all')
-              const isLargeCard = colSpan.includes('col-span-8')
-              const isTransitionActive = originalIndex === activeLightboxIndex
+          {filteredItems.map((item, index) => {
+            const originalIndex = collectionsData.findIndex((c) => c.id === item.id)
+            const colSpan = getColSpan(index, activeTab === 'all')
+            const isLargeCard = colSpan.includes('col-span-8')
+            const isTransitionActive = isLightboxOpen && originalIndex === activeLightboxIndex
 
-              return (
-                <motion.article
-                  layout
-                  key={item.id}
-                  initial={{ opacity: 0, y: 25 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-40px' }}
-                  exit={{ opacity: 0, scale: 0.98 }}
-                  transition={{ duration: 0.55, delay: (index % 4) * 0.05, ease: LUXURY_EASE }}
-                  className={`${colSpan} col-span-1 bg-ivory border border-sand-border hover:border-brass/60 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group overflow-hidden`}
+            return (
+              <motion.article
+                key={item.id}
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.035, ease: LUXURY_EASE }}
+                className={`${colSpan} col-span-1 bg-ivory border border-sand-border hover:border-brass/60 hover:shadow-xl transition-[border-color,box-shadow] duration-300 flex flex-col justify-between group overflow-hidden`}
+              >
+                {/* Image Container with Click / Hover Inspect */}
+                <div
+                  onClick={() => onInspectItem(item, originalIndex)}
+                  className={`relative overflow-hidden bg-charcoal-deep cursor-pointer ${isLargeCard ? 'aspect-16/9 md:aspect-21/9' : 'aspect-16/10'}`}
                 >
-                  {/* Image Container with Click / Hover Inspect */}
-                  <div
-                    onClick={() => onInspectItem(item, originalIndex)}
-                    className={`relative overflow-hidden bg-charcoal-deep cursor-pointer ${isLargeCard ? 'aspect-16/9 md:aspect-21/9' : 'aspect-16/10'}`}
-                  >
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      loading="lazy"
-                      decoding="async"
-                      style={{
-                        viewTransitionName: isTransitionActive ? 'active-collection-image' : 'none',
-                      }}
-                      className="w-full h-full object-cover group-hover:scale-104 transition-transform duration-700 ease-out"
-                    />
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    loading="lazy"
+                    decoding="async"
+                    style={{
+                      viewTransitionName: isTransitionActive ? 'active-collection-image' : 'none',
+                    }}
+                    className="w-full h-full object-cover group-hover:scale-104 transition-transform duration-700 ease-out"
+                  />
 
-                    {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-charcoal-deep/80 via-transparent to-transparent opacity-70 group-hover:opacity-50 transition-opacity duration-300" />
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal-deep/80 via-transparent to-transparent opacity-70 group-hover:opacity-50 transition-opacity duration-300 pointer-events-none" />
 
-                    {/* Top Category / Featured Badges */}
-                    <div className="absolute top-3 left-3 flex items-center gap-2">
-                      <div className="bg-charcoal-deep/85 backdrop-blur-xs text-brass text-xs uppercase tracking-wider font-semibold px-2.5 py-1 border border-charcoal-border">
-                        {item.categoryLabel}
-                      </div>
-                      {item.isFeatured && (
-                        <div className="bg-brass text-charcoal-deep text-xs uppercase tracking-wider font-bold px-2 py-1 flex items-center gap-1">
-                          <Sparkles className="w-3 h-3" />
-                          <span>Featured</span>
-                        </div>
-                      )}
+                  {/* Top Category / Featured Badges */}
+                  <div className="absolute top-3 left-3 flex items-center gap-2">
+                    <div className="bg-charcoal-deep/85 backdrop-blur-xs text-brass text-xs uppercase tracking-wider font-semibold px-2.5 py-1 border border-charcoal-border">
+                      {item.categoryLabel}
                     </div>
+                    {item.isFeatured && (
+                      <div className="bg-brass text-charcoal-deep text-xs uppercase tracking-wider font-bold px-2 py-1 flex items-center gap-1">
+                        <Sparkles className="w-3 h-3" />
+                        <span>Featured</span>
+                      </div>
+                    )}
+                  </div>
 
-                    {/* Top Right Inspect Trigger */}
+                  {/* Top Right Inspect Trigger */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      onInspectItem(item, originalIndex)
+                    }}
+                    className="absolute top-3 right-3 p-2 bg-charcoal-deep/80 text-ivory hover:bg-brass hover:text-charcoal-deep border border-charcoal-border opacity-0 group-hover:opacity-100 transition-all duration-200 cursor-pointer"
+                    aria-label={`Inspect ${item.title}`}
+                    title="Inspect Details"
+                  >
+                    <Maximize2 className="w-4 h-4" />
+                  </button>
+
+                  {/* Dimensions Pill Overlay */}
+                  <div className="absolute bottom-3 left-3 text-xs font-mono text-ivory/90 bg-charcoal-deep/85 px-2.5 py-1 border border-charcoal-border">
+                    {item.dimensions}
+                  </div>
+                </div>
+
+                {/* Card Content Block */}
+                <div className="p-6 sm:p-7 flex flex-col flex-1 justify-between space-y-4">
+                  <div>
+                    <h3 className="font-serif text-xl sm:text-2xl text-charcoal-teal group-hover:text-brass-dark transition-colors leading-tight mb-2">
+                      {item.title}
+                    </h3>
+
+                    <p className="text-sm text-brass-dark font-medium italic mb-2.5">
+                      "{item.tagline}"
+                    </p>
+
+                    <p className="text-sm sm:text-[15px] text-charcoal-brown/85 line-clamp-3 leading-relaxed mb-4 font-light">
+                      {item.description}
+                    </p>
+
+                    {/* Materials List */}
+                    <div className="flex flex-wrap gap-1.5 mb-2">
+                      {item.materials.map((mat, i) => (
+                        <span
+                          key={i}
+                          className="text-xs px-2.5 py-1 bg-sand/60 text-charcoal-brown font-medium border border-sand-border/80"
+                        >
+                          {mat}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Card Actions */}
+                  <div className="pt-4 border-t border-sand-border/60 flex items-center justify-between gap-2">
                     <button
                       onClick={() => onInspectItem(item, originalIndex)}
-                      className="absolute top-3 right-3 p-2 bg-charcoal-deep/80 text-ivory hover:bg-brass hover:text-charcoal-deep border border-charcoal-border opacity-0 group-hover:opacity-100 transition-all duration-200 cursor-pointer"
-                      aria-label={`Inspect ${item.title}`}
-                      title="Inspect Details"
+                      className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-charcoal-brown hover:text-brass transition-colors flex items-center gap-1.5 cursor-pointer py-1"
                     >
-                      <Maximize2 className="w-4 h-4" />
+                      <Eye className="w-4 h-4 text-brass" />
+                      <span>Inspect</span>
                     </button>
 
-                    {/* Dimensions Pill Overlay */}
-                    <div className="absolute bottom-3 left-3 text-xs font-mono text-ivory/90 bg-charcoal-deep/85 px-2.5 py-1 border border-charcoal-border">
-                      {item.dimensions}
-                    </div>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => onSelectForQuote(item)}
+                      icon={<MessageSquare className="w-3.5 h-3.5" />}
+                    >
+                      Request Quote
+                    </Button>
                   </div>
-
-                  {/* Card Content Block */}
-                  <div className="p-6 sm:p-7 flex flex-col flex-1 justify-between space-y-4">
-                    <div>
-                      <h3 className="font-serif text-xl sm:text-2xl text-charcoal-teal group-hover:text-brass-dark transition-colors leading-tight mb-2">
-                        {item.title}
-                      </h3>
-
-                      <p className="text-sm text-brass-dark font-medium italic mb-2.5">
-                        "{item.tagline}"
-                      </p>
-
-                      <p className="text-sm sm:text-[15px] text-charcoal-brown/85 line-clamp-3 leading-relaxed mb-4 font-light">
-                        {item.description}
-                      </p>
-
-                      {/* Materials List */}
-                      <div className="flex flex-wrap gap-1.5 mb-2">
-                        {item.materials.map((mat, i) => (
-                          <span
-                            key={i}
-                            className="text-xs px-2.5 py-1 bg-sand/60 text-charcoal-brown font-medium border border-sand-border/80"
-                          >
-                            {mat}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Card Actions */}
-                    <div className="pt-4 border-t border-sand-border/60 flex items-center justify-between gap-2">
-                      <button
-                        onClick={() => onInspectItem(item, originalIndex)}
-                        className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-charcoal-brown hover:text-brass transition-colors flex items-center gap-1.5 cursor-pointer py-1"
-                      >
-                        <Eye className="w-4 h-4 text-brass" />
-                        <span>Inspect</span>
-                      </button>
-
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => onSelectForQuote(item)}
-                        icon={<MessageSquare className="w-3.5 h-3.5" />}
-                      >
-                        Request Quote
-                      </Button>
-                    </div>
-                  </div>
-                </motion.article>
-              )
-            })}
-          </AnimatePresence>
+                </div>
+              </motion.article>
+            )
+          })}
 
           {/* Category View: Atelier Card to complete the 12-column row (6 + 6) */}
           {activeTab !== 'all' && (
             <motion.div
-              layout
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: filteredItems.length * 0.035, ease: LUXURY_EASE }}
               className="md:col-span-6 col-span-1 bg-charcoal-teal text-ivory border border-charcoal-border p-6 sm:p-8 flex flex-col justify-between"
             >
               <div className="space-y-4 text-left">

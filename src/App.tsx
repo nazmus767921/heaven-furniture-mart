@@ -87,6 +87,7 @@ export const App: React.FC = () => {
           onInspectItem={handleInspectItem}
           onSelectForQuote={handleSelectForQuote}
           activeLightboxIndex={activeLightboxIndex}
+          isLightboxOpen={isLightboxOpen}
         />
         <BespokeHighlightSection onOpenQuote={() => handleOpenQuote('bespoke')} />
         <ShowroomSection />
